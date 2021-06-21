@@ -11,8 +11,7 @@ const LineChart = () => {
   //   mode: "no-cors",
   //   headers: {
   //     "Content-Type": "application/json",
-  //     "x-access-token":
-  //       "coinranking3c7452ebd91112395f11a2de4746db550eeb078522a85cf6",
+  //     "x-access-token": process.env.API_KEY,
   //     "Access-Control-Allow-Origin": "*",
   //   },
   // })
@@ -33,7 +32,7 @@ const LineChart = () => {
   //     headers: {
   //       "Content-Type": "application/json",
   //       "x-access-token":
-  //         "coinranking3c7452ebd91112395f11a2de4746db550eeb078522a85cf6",
+  //         process.env.API_KEY,
   //       "Access-Control-Allow-Origin": "*",
   //     },
   //   })
