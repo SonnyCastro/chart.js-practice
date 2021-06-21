@@ -1,102 +1,63 @@
 import { Line } from "react-chartjs-2";
 import { useState, useEffect } from "react";
 import styles from "../styles/Home.module.css";
+import Ranges from "../components/ranges";
 const moment = require("moment");
 
 const LineChart = () => {
   const [sparklineD, setSparklineD] = useState([]);
 
-  // fetch("https://api.coinranking.com/v2/coin/razxDUgYGNAdQ?timePeriod=7d", {
-  //   method: "GET", // or 'PUT'
-  //   mode: "no-cors",
-  //   headers: {
-  //     "Content-Type": "application/json",
-  //     "x-access-token": process.env.API_KEY,
-  //     "Access-Control-Allow-Origin": "*",
-  //   },
-  // })
-  //   .then((response) => response.json())
-  //   .then((data) => {
-  //     // console.log(data?.coin?.sparkline);
-  //     // setSparklineD(data);
-  //     console.log(data);
-  //   })
-  //   .catch((error) => {
-  //     console.error("Error:", error);
-  //   });
-
-  // useEffect(() => {
-  //   fetch("https://api.coinranking.com/v2/coin/razxDUgYGNAdQ?timePeriod=7d", {
-  //     method: "GET", // or 'PUT'
-  //     mode: "no-cors",
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //       "x-access-token":
-  //         process.env.API_KEY,
-  //       "Access-Control-Allow-Origin": "*",
-  //     },
-  //   })
-  //     .then((response) => response.json())
-  //     .then((data) => {
-  //       // console.log("Success");
-  //       console.log(data);
-  //       // setSparklineD(data);
-  //     })
-  //     .catch((error) => {
-  //       console.error("Error:", error);
-  //     });
-  // }, [sparklineD]);
-
   useEffect(() => {
-    fetch("https://api.coingecko.com/api/v3/coins/ethereum?sparkline=true")
-      .then((res) => res.json())
+    fetch("/api/hello")
+      .then((response) => response.json())
       .then((data) => {
-        setSparklineD(data.market_data.sparkline_7d.price);
-        // setSparklineD(data.sparkline);
+        // console.log("Success");
+        console.log(data);
+        setSparklineD(data.data.coin.sparkline);
       })
-      .catch((e) => {
-        console.log(e);
+      .catch((error) => {
+        console.error("Error:", error);
       });
   }, []);
 
   const data = {
-    labels: Array.from(Array(168).keys()),
-    // labels: [
-    //   "",
-    //   "",
-    //   "",
-    //   "",
-    //   "",
-    //   "",
-    //   "",
-    //   "",
-    //   "",
-    //   "",
-    //   "",
-    //   "",
-    //   "",
-    //   "",
-    //   "",
-    //   "",
-    //   "",
-    //   "",
-    //   "",
-    //   "",
-    //   "",
-    //   "",
-    //   "",
-    //   "",
-    //   "",
-    //   "",
-    //   "",
-    //   "",
-    // ],
+    // labels: Array.from(Array(168).keys()),
+    labels: [
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+    ],
     datasets: [
       {
         label: "$ETH",
         fill: false,
         lineTension: 0.4,
-        backgroundColor: "rgba(75,192,192,0.4)",
+        backgroundColor: "rgba(71, 51, 166, 1)",
         borderColor: "rgba(71, 51, 166, 1)",
         borderWidth: 5,
         borderCapStyle: "butt",
@@ -191,8 +152,9 @@ const LineChart = () => {
   return (
     <div className={styles.header}>
       <div>
-        <h1 className="title">Line Chart</h1>
+        <h1>Line Chart</h1>
       </div>
+      <Ranges setSparklineD={setSparklineD} />
       <div
         style={{
           width: "70%",
