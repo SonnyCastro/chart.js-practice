@@ -2,12 +2,6 @@ import { Line } from "react-chartjs-2";
 import { useState, useEffect } from "react";
 import styles from "../styles/Home.module.css";
 const moment = require("moment");
-// const res = fetch(
-//   "https://api.coingecko.com/api/v3/coins/ethereum?sparkline=true"
-// );
-// const dataS = res.json();
-// const sparkline = dataS.market_data.sparkline_7d.price;
-// console.log(sparkline);
 
 const LineChart = () => {
   const [sparklineD, setSparklineD] = useState([]);
@@ -18,16 +12,15 @@ const LineChart = () => {
   //   headers: {
   //     "Content-Type": "application/json",
   //     "x-access-token":
-  //       "coinrankingc0b595008db85657a50d4082f20ff1ab68d03f2b78445fb8",
+  //       "coinranking3c7452ebd91112395f11a2de4746db550eeb078522a85cf6",
   //     "Access-Control-Allow-Origin": "*",
   //   },
   // })
   //   .then((response) => response.json())
   //   .then((data) => {
-  //     console.log(data?.coin?.sparkline);
-  //     let sdata = data.coin;
-  //     setSparklineD(data);
-  //     console.log(sdata.sparkline);
+  //     // console.log(data?.coin?.sparkline);
+  //     // setSparklineD(data);
+  //     console.log(data);
   //   })
   //   .catch((error) => {
   //     console.error("Error:", error);
@@ -40,20 +33,20 @@ const LineChart = () => {
   //     headers: {
   //       "Content-Type": "application/json",
   //       "x-access-token":
-  //         "coinrankingc0b595008db85657a50d4082f20ff1ab68d03f2b78445fb8",
+  //         "coinranking3c7452ebd91112395f11a2de4746db550eeb078522a85cf6",
   //       "Access-Control-Allow-Origin": "*",
   //     },
   //   })
   //     .then((response) => response.json())
   //     .then((data) => {
-  //       console.log("Success");
+  //       // console.log("Success");
   //       console.log(data);
-  //       setSparklineD(data);
+  //       // setSparklineD(data);
   //     })
   //     .catch((error) => {
   //       console.error("Error:", error);
   //     });
-  // }, []);
+  // }, [sparklineD]);
 
   useEffect(() => {
     fetch("https://api.coingecko.com/api/v3/coins/ethereum?sparkline=true")
