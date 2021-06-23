@@ -1,76 +1,90 @@
+import { useState, useEffect } from "react";
+import ranges from "../helpers/ranges.json";
+import assets from "../helpers/assets.json";
+
 const Ranges = ({ setSparklineD }) => {
-  const handleClick = (e) => {
-    console.log(e.target.attributes.timeframe.nodeValue);
-    fetch(`/api/hello?timeframe=${e.target.attributes.timeframe.nodeValue}`)
+  const [timeFrame, setTimeFrame] = useState("30d");
+  const [coinUuid, setCoinUuid] = useState("razxDUgYGNAdQ");
+
+  useEffect(() => {
+    fetch(`/api/fetchSparkline?coinUuid=${coinUuid}&timePeriod=${timeFrame}`)
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        console.log(data.data);
         setSparklineD(data.data.coin.sparkline);
       });
-  };
+  }, [timeFrame, coinUuid]);
+
   return (
     <div
       style={{
         display: "flex",
+        flexDirection: "column",
         justifyContent: "space-around",
-        width: "50%",
+        alignItems: "center",
+        width: "100%",
         margin: "3rem 0",
       }}
     >
-      <button
-        onClick={handleClick}
-        timeframe="24h"
+      <div
         style={{
-          backgroundColor: "transparent",
-          border: "1px solid white",
-          borderRadius: "25rem",
-
-          padding: "1rem",
-          color: "white",
+          display: "flex",
+          justifyContent: "space-around",
+          width: "55%",
         }}
       >
-        D
-      </button>
-      <button
-        onClick={handleClick}
-        timeframe="7d"
+        {ranges.map((range) => {
+          return (
+            <>
+              <button
+                onClick={(e) => {
+                  setTimeFrame(e.target.attributes.timeframe.nodeValue);
+                }}
+                timeframe={range.timeFrame}
+                style={{
+                  backgroundColor: "transparent",
+                  border: "1px solid white",
+                  borderRadius: "25rem",
+                  padding: "1rem",
+                  color: "white",
+                }}
+              >
+                {range.timePeriod}
+              </button>
+            </>
+          );
+        })}
+      </div>
+      <div
         style={{
-          backgroundColor: "transparent",
-          border: "1px solid white",
-          borderRadius: "25rem",
-
-          padding: "1rem",
-          color: "white",
+          display: "flex",
+          marginTop: "3rem",
+          justifyContent: "space-around",
+          width: "55%",
         }}
       >
-        W
-      </button>
-      <button
-        onClick={handleClick}
-        timeframe="30d"
-        style={{
-          backgroundColor: "transparent",
-          border: "1px solid white",
-          borderRadius: "25rem",
-          padding: "1rem",
-          color: "white",
-        }}
-      >
-        M
-      </button>
-      <button
-        onClick={handleClick}
-        timeframe="1y"
-        style={{
-          backgroundColor: "transparent",
-          border: "1px solid white",
-          borderRadius: "25rem",
-          padding: "1rem",
-          color: "white",
-        }}
-      >
-        Y
-      </button>
+        {assets.map((crypto) => {
+          return (
+            <>
+              <button
+                onClick={(e) => {
+                  setCoinUuid(e.target.attributes.coinUuid.nodeValue);
+                }}
+                coinUuid={crypto.coinUuid}
+                style={{
+                  backgroundColor: "transparent",
+                  border: "1px solid white",
+                  borderRadius: "25rem",
+                  padding: "1rem",
+                  color: "white",
+                }}
+              >
+                {crypto.coin}
+              </button>
+            </>
+          );
+        })}
+      </div>
     </div>
   );
 };

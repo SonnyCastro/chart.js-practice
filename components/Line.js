@@ -2,21 +2,19 @@ import { Line } from "react-chartjs-2";
 import { useState, useEffect } from "react";
 import styles from "../styles/Home.module.css";
 import Ranges from "../components/ranges";
-const moment = require("moment");
 
 const LineChart = () => {
   const [sparklineD, setSparklineD] = useState([]);
 
   useEffect(() => {
-    fetch("/api/hello")
+    fetch("/api/fetchSparkline?timeframe=30d")
       .then((response) => response.json())
       .then((data) => {
-        // console.log("Success");
-        console.log(data);
+        // console.log(data);
         setSparklineD(data.data.coin.sparkline);
       })
       .catch((error) => {
-        console.error("Error:", error);
+        console.error("Setting Sparkline Error:", error);
       });
   }, []);
 
@@ -64,24 +62,14 @@ const LineChart = () => {
         borderDash: [],
         borderDashOffset: 0.1,
         borderJoinStyle: "miter",
-
         pointBackgroundColor: "rgba(71, 51, 166, 1)",
         pointBorderWidth: 2,
         pointHoverRadius: 5,
         pointHoverBackgroundColor: "rgba(71, 51, 166, 1)",
         pointHoverBorderColor: "white",
         pointHoverBorderWidth: 2,
-        pointRadius: 0,
+        pointRadius: 3,
         pointHitRadius: 2,
-        // label: ["7d ETH"],
-
-        // fill: false,
-        // borderCapStyle: "round",
-        // borderWidth: 2,
-        // lineTension: 0.2,
-        // backgroundColor: "#47d7e2",
-        // borderColor: "#47d7e2",
-        // pointRadius: 0,
         data: sparklineD,
       },
     ],
@@ -90,14 +78,6 @@ const LineChart = () => {
   const options = {
     maintainAspectRatio: false,
     responsive: true,
-    // elements: {
-    //   point: {
-    //     hoverRadius: 4,
-    //   },
-    // },
-    // layout: {
-    //   padding: 20,
-    // },
     scales: {
       x: {
         offset: true,

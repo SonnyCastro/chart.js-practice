@@ -1,11 +1,10 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 
 export default (req, res) => {
-  // console.log(req.query.timeframe);
-  const ethereum = "razxDUgYGNAdQ";
-  const timePeriod = req.query.timeframe;
+  // console.log(req.query);
+  const { coinUuid, timePeriod } = req.query;
   fetch(
-    `https://api.coinranking.com/v2/coin/${ethereum}?timePeriod=${timePeriod}`,
+    `https://api.coinranking.com/v2/coin/${coinUuid}?timePeriod=${timePeriod}`,
     {
       method: "GET", // or 'PUT'
       headers: {

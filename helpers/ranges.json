@@ -1,0 +1,18 @@
+[
+  {
+    "timePeriod": "D",
+    "timeFrame": "24h"
+  },
+  {
+    "timePeriod": "W",
+    "timeFrame": "7d"
+  },
+  {
+    "timePeriod": "M",
+    "timeFrame": "30d"
+  },
+  {
+    "timePeriod": "Y",
+    "timeFrame": "1y"
+  }
+]
