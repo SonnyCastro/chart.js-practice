@@ -78,11 +78,6 @@ const LineChart = () => {
   const options = {
     maintainAspectRatio: false,
     responsive: true,
-    plugins: {
-      legend: {
-        display: false,
-      },
-    },
     scales: {
       x: {
         offset: true,
