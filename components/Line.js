@@ -2,7 +2,7 @@ import { Line } from "react-chartjs-2";
 import { useState, useEffect } from "react";
 import styles from "../styles/Home.module.css";
 import Ranges from "../components/ranges";
-
+import Link from "next/link";
 const LineChart = () => {
   const [sparklineD, setSparklineD] = useState([]);
 
@@ -143,6 +143,18 @@ const LineChart = () => {
       >
         <Line data={data} options={options} />
       </div>
+      <Link href="https://github.com/SonnyCastro/chart.js-practice">
+        <a
+          style={{
+            color: "white",
+            padding: "1rem",
+            borderRadius: "1rem",
+            border: "1px solid white",
+          }}
+        >
+          Go to Repo
+        </a>
+      </Link>
     </div>
   );
 };
