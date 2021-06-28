@@ -12,6 +12,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Line />
+      <a href="https://github.com/SonnyCastro/chart.js-practice">Repo</a>
     </div>
   );
 }
